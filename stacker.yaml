@@ -1,0 +1,36 @@
+builder:
+  from:
+    type: docker
+    url: docker://ubuntu:jammy
+  build_only: true
+  run: |
+    export DEBIAN_PRIORITY=critical
+    export DEBIAN_FRONTEND=noninteractive
+    sed -i '/^deb-src/d;/^deb /p;s/ /-src /' /etc/apt/sources.list
+    apt-get update
+    apt-get -y install ubuntu-dev-tools git
+    apt-get -y build-dep linux
+    git clone --depth 1 ${{KERNEL_URL}} -b ${{KERNEL_BRANCH}} linux
+
+kb:
+  from:
+    type: built
+    tag: builder
+  build_only: true
+  import:
+    - config
+  run: |
+    cd linux
+    cp /stacker/config .config
+    cpus=$(grep -c "^processor" /proc/cpuinfo)
+    make -j${cpus} oldconfig
+    make -j${cpus} vmlinux
+    make -j${cpus} modules
+    INSTALL_MOD_PATH=/make_out make -j${cpus} modules_install
+    cp vmlinux /make_out/
+    tar zcf /kernel.tar.gz -C /make_out .
+
+kernel-release:
+  from:
+    type: tar
+    url: stacker://kb/kernel.tar.gz
