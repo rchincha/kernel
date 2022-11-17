@@ -1,0 +1,19 @@
+on:
+  push:
+    branches:
+      - master
+
+name: build-publish
+jobs:
+  build:
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+    
+      - name: build
+        uses: project-stacker/stacker-build-push-action@main
+        with:
+          file: 'stacker.yaml'
+          build_args:
+            - KERNEL_URL=https://github.com/torvalds/linux
+            - KERNEL_BRANCH=master
