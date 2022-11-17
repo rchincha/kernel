@@ -34,3 +34,12 @@ kernel-release:
   from:
     type: tar
     url: stacker://kb/kernel.tar.gz
+  annotations:
+    org.opencontainers.image.title: kernel
+    org.opencontainers.image.description: Linux kernel for machine
+    org.opencontainers.image.url: https://github.com/project-machine/kernel
+    org.opencontainers.image.source: https://github.com/project-machine/kernel
+    org.opencontainers.image.version: ${{IMAGE_TAG}}
+    org.opencontainers.image.revision: ${{REVISION}}
+    org.opencontainers.image.licenses: Apache 2.0 / GPL 2.0
+    org.opencontainers.image.vendor: Cisco Systems, Inc.
