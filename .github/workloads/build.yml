@@ -6,6 +6,7 @@ on:
 name: build-publish
 jobs:
   build:
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
@@ -14,6 +15,6 @@ jobs:
         uses: project-stacker/stacker-build-push-action@main
         with:
           file: 'stacker.yaml'
-          build_args:
-            - KERNEL_URL=https://github.com/torvalds/linux
-            - KERNEL_BRANCH=master
+          build_args: |
+            KERNEL_URL=https://github.com/torvalds/linux
+            KERNEL_BRANCH=master
