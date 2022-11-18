@@ -26,8 +26,8 @@ jobs:
         with:
           file: 'stacker.yaml'
           build-args: |
-            KERNEL_URL=https://github.com/torvalds/linux
-            KERNEL_BRANCH=master
+            KERNEL_URL=https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git
+            KERNEL_BRANCH=linux-6.0.y
             REVISION=${{ env.SHA }}
             IMAGE_TAG=${{ env.IMAGE_TAG }}
 
@@ -49,8 +49,8 @@ jobs:
         with:
           file: 'stacker.yaml'
           build-args: |
-            KERNEL_URL=https://github.com/torvalds/linux
-            KERNEL_BRANCH=master
+            KERNEL_URL=https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git
+            KERNEL_BRANCH=linux-6.0.y
             REVISION=${{ env.SHA }}
             IMAGE_TAG=${{ env.IMAGE_TAG }}
           url: docker://zothub.io/machine/kernel

@@ -30,12 +30,12 @@ kb:
     cp vmlinux /make_out/
     tar zcf /kernel.tar.gz -C /make_out .
 
-kernel-release:
+linux:
   from:
     type: tar
     url: stacker://kb/kernel.tar.gz
   annotations:
-    org.opencontainers.image.title: kernel
+    org.opencontainers.image.title: linux
     org.opencontainers.image.description: Linux kernel for machine
     org.opencontainers.image.url: https://github.com/project-machine/kernel
     org.opencontainers.image.source: https://github.com/project-machine/kernel
