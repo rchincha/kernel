@@ -41,5 +41,5 @@ linux:
     org.opencontainers.image.source: https://github.com/project-machine/kernel
     org.opencontainers.image.version: ${{IMAGE_TAG}}
     org.opencontainers.image.revision: ${{REVISION}}
-    org.opencontainers.image.licenses: Apache 2.0 / GPL 2.0
+    org.opencontainers.image.licenses:  Apache-2.0 GPL-2.0-or-later
     org.opencontainers.image.vendor: Cisco Systems, Inc.
